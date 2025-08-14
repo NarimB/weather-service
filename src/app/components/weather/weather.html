@@ -1,0 +1,23 @@
+<div class="weather-app">
+  <div class="weather-app__form">
+    <input type="text" [(ngModel)]="city" placeholder="Введите город" (keyup.enter)="addCity()" />
+    <button (click)="addCity()">Добавить город</button>
+  </div>
+  <div class="weather-app__list">
+    <div *ngFor="let cityName of cities" class="weather-app__card">
+      <div class="weather-app__card-city">
+        <h1>{{ weatherData[cityName].main.temp }}°C</h1>
+        <h2>{{ cityName }}</h2>
+      </div>
+      <div class="weather-app__card-icon">
+        <img
+          [src]="
+            'https://openweathermap.org/img/wn/' + weatherData[cityName].weather[0].icon + '@2x.png'
+          "
+          alt="Weather icon"
+        />
+      </div>
+      <button class="weather-app__card-delete" (click)="removeCity(cityName)">X</button>
+    </div>
+  </div>
+</div>
